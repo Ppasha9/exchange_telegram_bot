@@ -16,9 +16,10 @@ def start_message(message):
                      'Hello! This is test exchange bot!\n'
                      'Base currency is USD.\n'
                      'Supported commands:\n'
-                     '  /list or /lst - returns list of all latest exchange rates.\n'
-                     '  /exchange 10 USD to CAD - converts currency to the second currency.\n'
-                     '  /history USD/CAD for 7 days - return an image graph chart which shows the exchange rate graph/chart of the selected currency for the last 7 days.\n')
+                     '  `/list or /lst` - returns list of all latest exchange rates.\n'
+                     '  `/exchange 10 USD to CAD` - converts currency to the second currency.\n'
+                     '  `/history USD/CAD for 7 days` - return an image graph chart which shows the exchange rate graph/chart of the selected currency for the last 7 days.\n',
+                     parse_mode='Markdown')
 
 
 @bot.message_handler(commands=['list', 'lst'])

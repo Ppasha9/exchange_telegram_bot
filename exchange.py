@@ -17,14 +17,15 @@ from database import get_data_from_database, save_data_to_database
 def get_latest_rates():
     database_ts, database_rates = get_data_from_database()
 
-    # check current timestamp with local database
-    cur_ts = datetime.datetime.now().timestamp()
-    # calculate the timestamp difference
-    diff = cur_ts - database_ts
+    if database_ts:
+        # check current timestamp with local database
+        cur_ts = datetime.datetime.now().timestamp()
+        # calculate the timestamp difference
+        diff = cur_ts - database_ts
 
-    # check that the timestamp difference is lower then 10 minutes
-    if diff <= MAX_DIFF_IN_SEC:
-        return database_rates
+        # check that the timestamp difference is lower then 10 minutes
+        if diff <= MAX_DIFF_IN_SEC:
+            return database_rates
 
     # get all rates data from website
     response = requests.get(LATEST_EXCHANGES_URL)
@@ -78,7 +79,6 @@ def save_history_to_debug_file(history_rates):
     locator = mdates.DayLocator()
     ax.xaxis.set_major_locator(locator)
 
-    print(history_rates)
     x_values, y_values = zip(*history_rates)
     plt.plot(x_values, y_values)
 

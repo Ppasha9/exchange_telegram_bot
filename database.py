@@ -1,3 +1,4 @@
+import os
 import json
 import datetime
 
@@ -5,6 +6,9 @@ from settings import DATABASE_FILE
 
 
 def get_data_from_database():
+    if not os.path.exists(DATABASE_FILE):
+        return None, None
+
     with open(DATABASE_FILE, "r") as f:
         database_obj = json.load(f)
     database_ts = database_obj["timestamp"]
